@@ -3,17 +3,20 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from './pages/Layout';
 import Home from './components/Home';
 import Login from './components/Login';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-        </Route>
-      </Routes>
-    </Router>
+    <AuthProvider> {/* ✅ Ahora toda la app tiene acceso a `useAuth()` */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="login" element={<Login />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

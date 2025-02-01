@@ -2,10 +2,12 @@ import { AppBar, Box, Button, Drawer, IconButton, List, ListItem, ListItemText, 
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {useAuth} from "../AuthContext";
+
 
 function NavBar() {
-  const [open, setOpen] = useState(false);
-
+  const [open, setOpen] = useState(false);  
+  let {user, login, logout} = useAuth();
   const toggleDrawer = (state) => () => setOpen(state);
 
   return (
@@ -16,13 +18,17 @@ function NavBar() {
             <MenuIcon />
           </IconButton>
 
+          <Typography>
+            {user ? <p>Bienvenido {user.displayName}</p>: <></>}
+          </Typography>
+
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Mi App
           </Typography>
 
-          <Button color="inherit" component={Link} to="/login">
-            Iniciar Sesión
-          </Button>
+          <Button color="inherit" onClick={login}>Iniciar Sesión</Button>
+          <Button color="inherit" onClick={logout}>Cerrar Sesión</Button>
+
         </Toolbar>
       </AppBar>
 
