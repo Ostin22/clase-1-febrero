@@ -42,6 +42,13 @@ function NavBar() {
             <ListItem button component={Link} to="/login">
               <ListItemText primary="Iniciar sesión" />
             </ListItem>
+
+
+            
+            <ListItem button component={Link} to="/protected">
+              <ListItemText primary="Ruta Protegida" />
+            </ListItem>
+
           </List>
         </Box>
       </Drawer>
